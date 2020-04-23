@@ -14,7 +14,6 @@
         android:text="Password Manager"
         />
 
-
     <EditText
         android:id="@+id/remail"
         android:layout_width="300dp"
@@ -40,7 +39,7 @@
         android:id="@+id/rcpassword"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="Password:"
+        android:hint="Re-enter Password:"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/rpassword"
         android:layout_marginTop="20dp"
