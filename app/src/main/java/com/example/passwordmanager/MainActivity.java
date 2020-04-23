@@ -28,18 +28,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = e1.getText().toString();
                 String password = e2.getText().toString();
-                Boolean checkMailPass = db.emailPassword(email, password);
+                boolean checkMailPass = db.emailPassword(email, password);
                 if (checkMailPass) {
                     Toast.makeText(getApplicationContext(), "Login Succesfull", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(MainActivity.this, PasswordManager.class));
                 } else {
                     Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
-
     }
 
     public void onRegisterClick(View v) {

@@ -36,10 +36,10 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else {
                     if (s2.equals(s3)){
-                        Boolean checkemail = db.checkMail(s1);
-                        if (checkemail == true){
-                            Boolean insert = db.insert(s1, s2);
-                            if (insert == true){
+                        boolean checkMail = db.checkMail(s1);
+                        if (checkMail){
+                            boolean insert = db.insert(s1, s2);
+                            if (insert){
                                 Toast.makeText(getApplicationContext(),"Registered succesfully", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                             }

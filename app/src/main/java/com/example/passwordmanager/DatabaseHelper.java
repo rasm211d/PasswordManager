@@ -7,13 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+    SQLiteDatabase db = this.getReadableDatabase();
     public DatabaseHelper(Context context) {
         super(context, "login.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE table user(email text primary key,password text)");
+        db.execSQL("CREATE table user(email text primary key, password text)");
     }
 
     @Override
@@ -23,7 +24,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //inserting in database
     public boolean insert(String email, String password) {
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("email", email);
         contentValues.put("password", password);
@@ -38,8 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     //check if email exists
-     public Boolean checkMail(String email) {
-        SQLiteDatabase db = this.getReadableDatabase();
+    public boolean checkMail(String email) {
         Cursor cursor = db.rawQuery("Select * from user where email=?", new String[]{email});
         if (cursor.getCount() > 0) {
             return false;
@@ -47,14 +46,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else {
             return true;
         }
-     }
+    }
 
      //Checking the email and password, if it matches
-    public Boolean emailPassword(String email, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from user where email=? and password =?", new String[]{email,password});
+    public boolean emailPassword(String email, String password) {
+        Cursor cursor = db.rawQuery("select * from user where email=? and password=?", new String[]{email,password});
         if (cursor.getCount() > 0) {
-            return false;
+            return true;
         }
         else {
             return false;
